@@ -1,0 +1,97 @@
+fonte,dimensione,livello,certezza,motivazione,riferimenti
+Carbone,Biodiversità e habitat,3,alta,"Miniere a cielo aperto, sterili, piogge acide ed eutrofizzazione; il contributo al clima pesa sugli ecosistemi globali.","UNECE 2022 §4.2, §4.9"
+Carbone,Paesaggio e visibilità,2,media,Centrali con camini e depositi di carbone e ceneri; le miniere sono quasi sempre lontane da chi usa l'elettricità.,
+Carbone,"Rumore, odori, traffico",2,media,"Traffico di navi e treni per il combustibile, polveri dai depositi.",
+Carbone,Suolo agricolo,1,media,"Le centrali occupano poco; le miniere occupano molto suolo, ma lontano.",Lovering et al. 2022
+Carbone,Impatti delocalizzati della filiera,3,alta,"Miniere all'estero (arsenico, fosfati, metano), clima globale.","UNECE 2022 §4.2, §4.4"
+Carbone,Inquinamento e salute,3,alta,Prima fonte per mortalità da inquinamento atmosferico per TWh.,Markandya & Wilkinson 2007
+Carbone,Rischio di incidenti gravi,2,media,Incidenti in miniera; dighe di sterili e ceneri.,
+Carbone,Irreversibilità e passività di lungo periodo,3,alta,"Miniere da bonificare, ceneri, CO2 che resta in atmosfera per secoli.",
+Petrolio,Biodiversità e habitat,3,alta,Sversamenti in mare e a terra; piattaforme e oleodotti; clima.,"Saedi 2024; bonifica suoli (OIL ETC)"
+Petrolio,Paesaggio e visibilità,1,media,In Italia l'elettricità da petrolio è marginale; impatti visivi soprattutto in raffinerie e terminali.,
+Petrolio,"Rumore, odori, traffico",2,media,"Odori e traffico intorno a raffinerie e depositi.",
+Petrolio,Suolo agricolo,1,bassa,Contaminazione di suoli intorno a pozzi e oleodotti.,
+Petrolio,Impatti delocalizzati della filiera,3,alta,"Estrazione all'estero, fiaccole, metano, conflitti nei paesi produttori.",IEA Global Methane Tracker 2025
+Petrolio,Inquinamento e salute,3,alta,Seconda fonte per mortalità per TWh; alte emissioni di SO2.,"Markandya & Wilkinson 2007; Turconi 2013"
+Petrolio,Rischio di incidenti gravi,3,alta,"Sversamenti di petroliere e piattaforme, incendi di raffinerie.",
+Petrolio,Irreversibilità e passività di lungo periodo,3,alta,"Pozzi abbandonati, suoli contaminati, CO2.",
+Gas naturale,Biodiversità e habitat,2,media,"Infrastrutture di estrazione e gasdotti; fughe di metano; clima.",
+Gas naturale,Paesaggio e visibilità,1,media,Centrali compatte; gasdotti interrati dopo la posa.,
+Gas naturale,"Rumore, odori, traffico",1,media,Rumore delle turbine e delle stazioni di compressione.,
+Gas naturale,Suolo agricolo,1,media,Occupazione diretta modesta; i giacimenti sono lontani.,Lovering et al. 2022
+Gas naturale,Impatti delocalizzati della filiera,2,alta,"Estrazione all'estero, fughe di metano lungo la filiera, GNL.","UNECE 2022 §3.2; IEA Global Methane Tracker 2025"
+Gas naturale,Inquinamento e salute,2,alta,Circa un ottavo della mortalità del carbone per TWh; NOx.,Markandya & Wilkinson 2007
+Gas naturale,Rischio di incidenti gravi,2,media,Esplosioni di gasdotti e impianti GNL.,
+Gas naturale,Irreversibilità e passività di lungo periodo,2,media,CO2 in atmosfera; pozzi da chiudere.,
+Nucleare,Biodiversità e habitat,1,media,"Occupazione di suolo molto bassa; inquinamento termico dei corpi idrici con raffreddamento a ciclo aperto.","UNECE 2022 §3.7; Lovering et al. 2022"
+Nucleare,Paesaggio e visibilità,2,media,"Torri di raffreddamento molto visibili, ma su pochi siti.",
+Nucleare,"Rumore, odori, traffico",1,media,Traffico in cantiere e trasporti speciali.,
+Nucleare,Suolo agricolo,1,alta,Fonte con il minor uso di suolo per MWh.,Lovering et al. 2022
+Nucleare,Impatti delocalizzati della filiera,2,media,Miniere di uranio e sterili radioattivi all'estero; arricchimento concentrato in pochi paesi.,UNECE 2022 §7.3
+Nucleare,Inquinamento e salute,1,alta,Mortalità per TWh molto bassa anche includendo Chernobyl e Fukushima.,Our World in Data
+Nucleare,Rischio di incidenti gravi,3,media,"Bassa probabilità ma conseguenze gravi e durature; molto percepito.",
+Nucleare,Irreversibilità e passività di lungo periodo,3,alta,"Scorie ad alta attività da isolare per millenni; in Italia il deposito nazionale non c'è ancora.",World Nuclear Waste Report 2019
+Idroelettrico,Biodiversità e habitat,3,alta,"Interruzione della continuità fluviale, deflussi alterati, fauna ittica, trasporto di sedimenti.","Local opposition (Tagliamento, Carnia)"
+Idroelettrico,Paesaggio e visibilità,2,media,Dighe e condotte; prelievi visibili come alvei secchi.,
+Idroelettrico,"Rumore, odori, traffico",1,media,Soprattutto in cantiere.,
+Idroelettrico,Suolo agricolo,2,media,Gli invasi sommergono valli e terreni; minore per le centrali ad acqua fluente.,
+Idroelettrico,Impatti delocalizzati della filiera,0,media,Impatti quasi tutti nel bacino dove si produce.,
+Idroelettrico,Inquinamento e salute,0,alta,Nessuna emissione in esercizio.,
+Idroelettrico,Rischio di incidenti gravi,2,alta,"Crollo o tracimazione di dighe (in FVG la memoria del Vajont è viva).",Local opposition (Vajont)
+Idroelettrico,Irreversibilità e passività di lungo periodo,2,media,Gli invasi modificano la morfologia fluviale per decenni.,
+Fotovoltaico,Biodiversità e habitat,1,media,"Dipende da cosa c'era prima: su seminativi intensivi può migliorare la vegetazione se gestito come soluzione basata sulla natura; su habitat naturali è una perdita.","Bretzel (LIFE NatConnect); Vervloesem et al. 2022; Solar Energy UK 2023"
+Fotovoltaico,Paesaggio e visibilità,2,alta,Impianti a terra estesi in pianura; molto percepiti vicino alle case.,Local opposition (Udine Nord; Manzano)
+Fotovoltaico,"Rumore, odori, traffico",0,alta,Solo in cantiere.,
+Fotovoltaico,Suolo agricolo,3,media,"Fonte con il maggiore uso di suolo diretto tra le rinnovabili elettriche; l'agrivoltaico e le aree idonee riducono il conflitto.","Lovering et al. 2022; DM aree idonee 2024"
+Fotovoltaico,Impatti delocalizzati della filiera,2,alta,"Silicio, argento e rame da filiere concentrate (soprattutto Cina); energia elettrica a carbone nella manifattura.","UNECE 2022 §3.4; IEA Critical Minerals 2024-2026"
+Fotovoltaico,Inquinamento e salute,0,alta,Nessuna emissione in esercizio; mortalità per TWh molto bassa.,
+Fotovoltaico,Rischio di incidenti gravi,0,alta,,
+Fotovoltaico,Irreversibilità e passività di lungo periodo,1,media,Strutture rimovibili; il suolo torna disponibile; i moduli richiedono riciclo dedicato.,JRC 2025 circolarità
+Eolico onshore,Biodiversità e habitat,2,media,"Collisioni di uccelli e chirotteri molto dipendenti dal sito; strade e piazzole in quota frammentano habitat montani.","UNECE 2022; Gustin, Spada, Battisti (LIFE NatConnect)"
+Eolico onshore,Paesaggio e visibilità,3,alta,Turbine alte 150–200 m su crinali visibili da lontano.,Local opposition (Monte Lanzenber; Monte Craguenza)
+Eolico onshore,"Rumore, odori, traffico",2,media,"Rumore e ombre intermittenti vicino alle case; trasporti eccezionali in cantiere.",UNECE 2022 §3.3.3
+Eolico onshore,Suolo agricolo,1,alta,"Impronta piccola; l'area tra le turbine resta utilizzabile.","Lovering et al. 2022"
+Eolico onshore,Impatti delocalizzati della filiera,2,media,"Terre rare (solo con generatori a magneti permanenti), acciaio, rame.","BTI 2024; UNECE 2022 Box 2"
+Eolico onshore,Inquinamento e salute,0,alta,Nessuna emissione in esercizio.,
+Eolico onshore,Rischio di incidenti gravi,0,alta,,
+Eolico onshore,Irreversibilità e passività di lungo periodo,1,media,"Turbine smontabili; restano fondazioni e strade; pale difficili da riciclare.","UNECE 2022 Box 3; JRC 2025"
+Eolico offshore fisso,Biodiversità e habitat,2,media,"Rumore subacqueo durante la battitura dei pali (cetacei); collisioni di uccelli marini; effetto scogliera artificiale.","Bianchelli, Andreotti (LIFE NatConnect)"
+Eolico offshore fisso,Paesaggio e visibilità,2,media,Dipende dalla distanza dalla costa; percepito da turismo e pesca.,
+Eolico offshore fisso,"Rumore, odori, traffico",1,media,Traffico navale in costruzione e manutenzione.,
+Eolico offshore fisso,Suolo agricolo,0,alta,Nessun uso di suolo agricolo; interferenza con la pesca.,
+Eolico offshore fisso,Impatti delocalizzati della filiera,2,media,"Acciaio, rame dei cavi, terre rare nei generatori.",BTI 2024
+Eolico offshore fisso,Inquinamento e salute,0,alta,,
+Eolico offshore fisso,Rischio di incidenti gravi,1,media,Incidenti navali in costruzione e manutenzione.,
+Eolico offshore fisso,Irreversibilità e passività di lungo periodo,1,media,Scelta tra rimozione e permanenza delle fondazioni.,Bianchelli (LIFE NatConnect)
+Eolico offshore galleggiante,Biodiversità e habitat,2,bassa,"Meno rumore da battitura; ancoraggi e cavi dinamici in acque profonde; evidenze dei parchi fissi non trasferibili.",Bianchelli (LIFE NatConnect)
+Eolico offshore galleggiante,Paesaggio e visibilità,1,media,Di solito più lontano dalla costa (fondali oltre 200 m).,Ambrosetti 2024
+Eolico offshore galleggiante,"Rumore, odori, traffico",1,bassa,Traffico navale per traino e manutenzione.,
+Eolico offshore galleggiante,Suolo agricolo,0,alta,,
+Eolico offshore galleggiante,Impatti delocalizzati della filiera,2,bassa,"Più acciaio per le piattaforme; nessun LCA disponibile nella base.",
+Eolico offshore galleggiante,Inquinamento e salute,0,alta,,
+Eolico offshore galleggiante,Rischio di incidenti gravi,1,bassa,,
+Eolico offshore galleggiante,Irreversibilità e passività di lungo periodo,1,bassa,Le piattaforme sono rimorchiabili; ancoraggi da rimuovere.,
+Bioenergie,Biodiversità e habitat,2,media,Dipende dalla materia prima: colture dedicate contro residui e reflui.,UNECE 2022 §2.2
+Bioenergie,Paesaggio e visibilità,1,media,Digestori e serbatoi in zona agricola.,
+Bioenergie,"Rumore, odori, traffico",3,media,Odori di digestato e traffico agricolo sono i motivi di protesta più citati.,"Local opposition (Budoia, Pagnacco)"
+Bioenergie,Suolo agricolo,2,media,Le colture dedicate competono con la produzione di cibo; i residui no.,Lovering et al. 2022
+Bioenergie,Impatti delocalizzati della filiera,1,bassa,Filiera soprattutto locale; biomasse importate nei grandi impianti.,
+Bioenergie,Inquinamento e salute,2,media,Combustione di biomassa solida: particolato; il biometano molto meno.,Local opposition (San Vito al Tagliamento)
+Bioenergie,Rischio di incidenti gravi,1,media,"Fughe di biogas, incendi.",
+Bioenergie,Irreversibilità e passività di lungo periodo,1,media,,
+Accumuli (BESS),Biodiversità e habitat,0,media,Occupazione di suolo piccola e concentrata.,
+Accumuli (BESS),Paesaggio e visibilità,1,media,Container in zona agricola o industriale.,
+Accumuli (BESS),"Rumore, odori, traffico",1,media,Rumore di ventole e sistemi di raffreddamento.,
+Accumuli (BESS),Suolo agricolo,1,media,Spesso localizzati vicino alle sottostazioni su suolo agricolo.,Local opposition (Pavia di Udine; Basiliano)
+Accumuli (BESS),Impatti delocalizzati della filiera,3,alta,"Litio, grafite, fosfati da filiere molto concentrate.","BTI 2024; IEA Critical Minerals 2024-2026"
+Accumuli (BESS),Inquinamento e salute,1,media,"Campi elettromagnetici citati nelle proteste; la letteratura non indica rischi alle distanze di legge (da verificare nella scheda).",Local opposition (Basiliano)
+Accumuli (BESS),Rischio di incidenti gravi,2,media,Incendi delle batterie (fuga termica) e fumi.,
+Accumuli (BESS),Irreversibilità e passività di lungo periodo,1,media,Batterie da riciclare a fine vita.,EPO/IEA Battery Circularity
+Reti ed elettrodotti,Biodiversità e habitat,1,media,Collisioni ed elettrocuzione di uccelli sulle linee aeree; varchi nei boschi.,
+Reti ed elettrodotti,Paesaggio e visibilità,2,alta,Tralicci e sottostazioni molto visibili; interrare costa di più e scava di più.,Local opposition (Tolmezzo)
+Reti ed elettrodotti,"Rumore, odori, traffico",1,media,Cantieri lunghi per gli interramenti.,Local opposition (Tolmezzo)
+Reti ed elettrodotti,Suolo agricolo,1,media,Sottostazioni e fasce di rispetto.,
+Reti ed elettrodotti,Impatti delocalizzati della filiera,1,media,"Rame, alluminio, acciaio.",
+Reti ed elettrodotti,Inquinamento e salute,1,media,Campi elettromagnetici molto percepiti; limiti di legge fissati per esposizione prolungata.,
+Reti ed elettrodotti,Rischio di incidenti gravi,0,media,,
+Reti ed elettrodotti,Irreversibilità e passività di lungo periodo,1,media,Infrastrutture di lunga durata.,
