@@ -69,7 +69,31 @@ def carica_indicatori() -> pd.DataFrame:
     df["hi"] = df["max"].fillna(df["centrale"])
     df["punto"] = df["centrale"]
     df["etichetta"] = df["fonte"] + " – " + df["tecnologia"]
+    df["is_rif"] = df["riferimento"] == "sì"
     return df
+
+
+def carica_sintesi() -> pd.DataFrame:
+    return _csv("sintesi_fonti.csv")
+
+
+# Indicatore mostrato per primo in ogni categoria.
+INDICATORE_PREDEFINITO = {
+    "Emissioni": "Gas serra nel ciclo di vita",
+    "Materiali ed estrazione": "Minerali critici (totale)",
+    "Efficienza": "Capacity factor",
+    "Suolo e acqua": "Uso di suolo",
+    "Fauna, flora, biodiversità": "Mortalità avifauna",
+    "Salute e sicurezza": "Mortalità per TWh",
+}
+
+
+def unita_principale(df: pd.DataFrame, indicatore: str) -> str:
+    """Unità usata dai valori di riferimento di un indicatore (la più frequente)."""
+    s = df[(df["indicatore"] == indicatore) & df["is_rif"]]["unita"]
+    if s.empty:
+        s = df[df["indicatore"] == indicatore]["unita"]
+    return s.value_counts().index[0]
 
 
 def carica_bibliografia() -> pd.DataFrame:
@@ -136,6 +160,24 @@ def valida() -> list[str]:
             problemi.append(f"{rif}: valori non ordinati (min ≤ centrale ≤ max)")
         if r["tipo_dato"] not in {"letteratura", "misurato", "stima nostra"}:
             problemi.append(f"{rif}: tipo_dato '{r['tipo_dato']}' non valido")
+        if r["riferimento"] not in {"sì", ""}:
+            problemi.append(f"{rif}: riferimento deve essere 'sì' o vuoto")
+
+    n_rif = ind[ind["is_rif"]].groupby(["fonte", "indicatore", "unita"]).size()
+    for chiave in n_rif[n_rif > 1].index:
+        problemi.append(f"indicatori: più di un valore di riferimento per {chiave}")
+
+    sint = carica_sintesi()
+    for _, r in sint.iterrows():
+        if r["fonte"] not in fonti_note:
+            problemi.append(f"sintesi: fonte '{r['fonte']}' non prevista")
+        if r["categoria"] not in ORDINE_CATEGORIE:
+            problemi.append(f"sintesi: categoria '{r['categoria']}' non prevista")
+    if sint.duplicated(["fonte", "categoria"]).any():
+        problemi.append("sintesi: coppie fonte/categoria duplicate")
+    for cat, ind_pred in INDICATORE_PREDEFINITO.items():
+        if not ((ind["categoria"] == cat) & (ind["indicatore"] == ind_pred)).any():
+            problemi.append(f"indicatore predefinito '{ind_pred}' assente nella categoria {cat}")
 
     for _, r in mat.iterrows():
         if r["fonte"] not in fonti_note:

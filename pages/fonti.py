@@ -15,7 +15,8 @@ st.markdown(
 - **Ogni numero** ha fonte, anno, regione e perimetro. Il *tipo di dato* distingue letteratura, dato misurato e stima nostra.
 - **Intervalli, non solo medie.** Le differenze dipendono soprattutto da irraggiamento e vento, mix elettrico della manifattura, efficienza delle centrali e fughe di metano.
 - **Fonti divergenti** sono mostrate entrambe, con una nota. Esempio: per il carbone IPCC AR5 (820 g) contro UNECE 2022 (751–1095 g).
-- **Nessun punteggio aggregato.** Indicatori quantitativi e matrice qualitativa restano separati.
+- **Un valore di riferimento per fonte.** Nei grafici di confronto ogni fonte ha un solo valore (colonna `riferimento` in `indicatori.csv`); gli altri (tecnologie diverse, fonti bibliografiche alternative) restano visibili in *Tutti i valori*.
+- **Nessun punteggio aggregato.** Ogni indicatore si legge da solo.
 """
 )
 
@@ -24,7 +25,7 @@ st.markdown(
     """
 - I capacity factor del Breakthrough Institute (FV 24%, eolico onshore 35%, offshore 55%) sono più alti delle medie europee usate da UNECE (12%, 23%, 36%). I valori per MWh in Italia sarebbero più alti di quelli BTI.
 - La "roccia movimentata" di carbone e gas nel dataset BTI è la massa del combustibile, non gli sterili: il carbone è sottostimato.
-- Gli LCA non coprono rumore, paesaggio, mortalità della fauna né incidenti gravi: questi impatti sono nella matrice qualitativa.
+- Gli LCA non coprono rumore, paesaggio, mortalità della fauna né incidenti gravi: questi impatti sono descritti a parole nell'*Analisi per fonte* (valutazione preliminare del gruppo).
 - I tassi di mortalità per TWh sono valori arrotondati da Our World in Data e vanno aggiornati con il dataset ufficiale.
 """
 )

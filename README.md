@@ -8,10 +8,8 @@ Fa parte del progetto **ESTERNALITÀ**, filone Social Acceptance / POWERUP.
 
 | Pagina | Cosa mostra |
 |---|---|
-| Panoramica | Quanti dati ci sono per fonte e categoria, e dove mancano |
-| Confronto per indicatore | Un indicatore alla volta (gas serra, uso di suolo, materiali, mortalità…), intervalli min–max, fonte di ogni numero |
-| Scheda per fonte | Indicatori divisi per fase del ciclo di vita, dove ricadono gli impatti, classificazione PPE, conflitti collegati |
-| Impatti qualitativi | Matrice fonti × impatti non misurabili (biodiversità, paesaggio, odori…) e grafico dell'asimmetria spaziale |
+| Analisi per fonte | Una scheda per fonte: per ogni categoria una spiegazione e i grafici con la fonte evidenziata tra le altre; dove ricadono gli impatti, aree PPE, biodiversità e paesaggio, conflitti collegati |
+| Confronto per indicatore | Tutte le categorie (emissioni, materiali, efficienza, suolo e acqua, fauna, salute), ognuna con la sua tendina per l'indicatore; un valore per fonte, ordinato, con etichette dirette |
 | Conflitti in FVG | I 21 casi di *Local opposition.xlsx*, motivo per motivo, con l'evidenza disponibile |
 | Fonti e metodo | Bibliografia, regole, cautele, lacune |
 
@@ -52,9 +50,10 @@ Tutti i dati sono file CSV in `data/`, modificabili anche con Excel o Google She
 
 | File | Contenuto |
 |---|---|
-| `indicatori.csv` | Valori quantitativi: una riga per valore, con min / centrale / max, unità, regione, anno, fase, fonte bibliografica e tipo di dato |
+| `indicatori.csv` | Valori quantitativi: una riga per valore, con min / centrale / max, unità, regione, anno, fase, fonte bibliografica, tipo di dato e `riferimento` (`sì` per il valore mostrato nei grafici di confronto, al massimo uno per fonte e indicatore) |
+| `sintesi_fonti.csv` | Il testo esplicativo per ogni fonte e categoria nell'Analisi per fonte |
 | `fonti_bibliografiche.csv` | Bibliografia, con link e ID del file sul Drive |
-| `matrice_qualitativa.csv` | Livelli 0–3 per gli impatti non misurabili, con certezza e motivazione |
+| `matrice_qualitativa.csv` | Descrizione degli impatti non misurati negli LCA (biodiversità, paesaggio, odori…), mostrata nell'Analisi per fonte |
 | `profilo_fonti.csv` | Famiglia, dove ricadono gli impatti, chi li subisce, aree PPE |
 | `conflitti_fvg.csv` | I 21 conflitti in FVG, con i motivi codificati |
 | `temi_conflitto.csv` | Per ogni motivo di protesta: natura, evidenza, stato (misurato / plausibile / non supportato) |
@@ -63,7 +62,7 @@ Tutti i dati sono file CSV in `data/`, modificabili anche con Excel o Google She
 
 - Ogni numero ha fonte, anno, regione e perimetro. Il campo `tipo_dato` vale `letteratura`, `misurato` o `stima nostra`.
 - Si riportano intervalli, non solo medie. Se due fonti divergono si tengono entrambe e si scrive perché nella colonna `note` (iniziando con `FONTI DIVERGENTI:` la nota viene evidenziata nell'app).
-- La matrice qualitativa e le posizioni nel grafico dell'asimmetria sono **stime preliminari del gruppo**, da validare.
+- Le descrizioni di biodiversità, paesaggio e territorio sono **valutazioni preliminari del gruppo**, da validare.
 - Nessun punteggio unico aggregato.
 
 ### Aggiungere o correggere un dato

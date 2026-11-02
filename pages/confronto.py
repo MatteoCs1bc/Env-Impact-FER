@@ -7,60 +7,72 @@ d = ui.dati()
 ind, prof, bib = d["indicatori"], d["profili"], d["bibliografia"]
 
 st.title("Confronto per indicatore")
+st.markdown(
+    "Per ogni categoria scegli un indicatore: il grafico mostra **un valore per fonte**, "
+    "ordinato dal più alto al più basso. La **barra** è l'intervallo tra minimo e massimo, "
+    "il **pallino** il valore centrale o il valore singolo. Passa sopra una riga per fonte, anno e perimetro."
+)
+ui.legenda_famiglie()
 
-f1, f2, f3 = st.columns([1, 1.4, 1])
-categorie = [c for c in D.ORDINE_CATEGORIE if c in set(ind["categoria"])]
-categoria = f1.selectbox("Categoria", categorie)
-sotto = ind[ind["categoria"] == categoria]
-nomi = sorted(sotto["indicatore"].unique())
-predefinito = "Gas serra nel ciclo di vita"
-indicatore = f2.selectbox("Indicatore", nomi, index=nomi.index(predefinito) if predefinito in nomi else 0)
-sotto = sotto[sotto["indicatore"] == indicatore]
-
-unita_disponibili = sotto["unita"].unique().tolist()
-if len(unita_disponibili) > 1:
-    unita = f3.selectbox("Unità", unita_disponibili, help="Valori in unità diverse non vanno sullo stesso asse.")
-    sotto = sotto[sotto["unita"] == unita]
-else:
-    unita = unita_disponibili[0]
-    f3.text_input("Unità", unita, disabled=True)
-
-fonti_presenti = [f for f in D.ORDINE_FONTI if f in set(sotto["fonte"])]
-scelte = st.multiselect("Fonti energetiche", fonti_presenti, default=fonti_presenti)
-sotto = sotto[sotto["fonte"].isin(scelte)]
-
-c1, c2 = st.columns([1, 3])
-log = c1.toggle("Scala logaritmica", value=sotto["hi"].max() / max(sotto["lo"][sotto["lo"] > 0].min(), 1e-9) > 50 if len(sotto) else False)
-tipi = c2.multiselect("Tipo di dato", sorted(ind["tipo_dato"].unique()), default=sorted(ind["tipo_dato"].unique()))
-sotto = sotto[sotto["tipo_dato"].isin(tipi)]
-
-mancanti = [f for f in D.ORDINE_FONTI if f not in fonti_presenti]
-if mancanti:
-    st.caption("Nessun dato per: " + ", ".join(mancanti) + ".")
-
-if sotto.empty:
-    st.info("Nessun valore con questi filtri.")
-else:
-    ui.legenda_famiglie()
-    st.caption("Barra = intervallo min–max · punto = valore centrale (mediana, media o valore singolo). Passa sopra una barra per fonte, anno e perimetro.")
-    st.plotly_chart(ui.grafico_intervalli(sotto, prof, bib, unita, log), width="stretch")
-
-    divergenti = sotto.groupby("fonte")["fonte_id"].nunique()
-    divergenti = divergenti[divergenti > 1].index.tolist()
-    if divergenti:
-        st.info(
-            "Più fonti bibliografiche per: " + ", ".join(divergenti) + ". "
-            "Controlla le note in tabella: perimetri e ipotesi diverse spiegano gran parte delle differenze."
+for categoria in D.ORDINE_CATEGORIE:
+    sotto_cat = ind[ind["categoria"] == categoria]
+    if sotto_cat.empty:
+        continue
+    with st.container(border=True):
+        st.subheader(categoria)
+        nomi = sorted(sotto_cat["indicatore"].unique())
+        pred = D.INDICATORE_PREDEFINITO.get(categoria)
+        c1, c2 = st.columns([3, 1])
+        indicatore = c1.selectbox(
+            "Indicatore", nomi, index=nomi.index(pred) if pred in nomi else 0, key=f"ind_{categoria}",
         )
-    avvisi = sotto[sotto["note"].str.contains("ATTENZIONE|FONTI DIVERGENTI", regex=True)]
-    for _, r in avvisi.iterrows():
-        st.warning(f"**{r['fonte']} – {r['tecnologia']}**: {r['note']}")
-
-    with st.expander("Tabella dei valori", expanded=False):
-        ui.tabella_valori(sotto, bib)
-        st.download_button(
-            "Scarica CSV", sotto.drop(columns=["lo", "hi", "punto", "etichetta"]).to_csv(index=False).encode("utf-8"),
-            file_name=f"esternalita_{indicatore}.csv".replace(" ", "_"), mime="text/csv",
+        tutti = sotto_cat[sotto_cat["indicatore"] == indicatore]
+        unita = D.unita_principale(ind, indicatore)
+        rif = tutti[tutti["is_rif"] & (tutti["unita"] == unita)]
+        positivi = not rif.empty and (rif["lo"] > 0).all() and (rif["hi"] > 0).all()
+        log = c2.toggle(
+            "Scala logaritmica", value=ui.serve_log(rif), key=f"log_{categoria}_{indicatore}",
+            disabled=not positivi,
+            help="Utile quando i valori differiscono di molti ordini di grandezza. Non disponibile se ci sono valori pari a zero.",
         )
+
+        if rif.empty:
+            st.info("Nessun valore di riferimento per questo indicatore: vedi tutti i valori qui sotto.")
+        else:
+            st.plotly_chart(ui.grafico_riferimento(rif, prof, bib, unita, log), width="stretch", key=f"g_{categoria}")
+
+        senza = [f for f in D.ORDINE_FONTI if f not in set(tutti["fonte"])]
+        fuori = sorted(set(tutti["fonte"]) - set(rif["fonte"]), key=D.ORDINE_FONTI.index)
+        righe = []
+        if senza:
+            righe.append("Nessun dato per: " + ", ".join(senza) + ".")
+        if fuori:
+            righe.append(
+                "Non in grafico (dato non confrontabile o in un'altra unità): " + ", ".join(fuori) + ". "
+                "Lo trovi in *Tutti i valori*."
+            )
+        if righe:
+            st.caption(" ".join(righe))
+
+        for _, r in tutti[tutti["note"].str.contains("ATTENZIONE|FONTI DIVERGENTI|Valore di riferimento", regex=True)].iterrows():
+            st.caption(f"⚠️ **{r['fonte']} – {r['tecnologia']}**: {r['note']}")
+
+        altri = len(tutti) - len(rif)
+        titolo = f"Tutti i valori ({len(tutti)})"
+        if altri:
+            titolo += f": anche {altri} alternativi (altre tecnologie o altre fonti bibliografiche)"
+        with st.expander(titolo):
+            for u in tutti["unita"].unique():
+                gruppo = tutti[tutti["unita"] == u]
+                st.plotly_chart(
+                    ui.grafico_intervalli(gruppo, prof, bib, u, ui.serve_log(gruppo)),
+                    width="stretch", key=f"tutti_{categoria}_{u}",
+                )
+            ui.tabella_valori(tutti, bib)
+            st.download_button(
+                "Scarica CSV",
+                tutti.drop(columns=["lo", "hi", "punto", "etichetta", "is_rif"]).to_csv(index=False).encode("utf-8"),
+                file_name=f"esternalita_{indicatore}.csv".replace(" ", "_"), mime="text/csv", key=f"dl_{categoria}",
+            )
 
 ui.piede()
