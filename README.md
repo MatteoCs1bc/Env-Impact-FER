@@ -11,8 +11,8 @@ Fa parte del progetto **ESTERNALITÀ**, filone Social Acceptance / POWERUP.
 | Analisi per fonte | Una scheda per fonte: per ogni categoria una spiegazione e i grafici con la fonte evidenziata tra le altre; dove ricadono gli impatti, aree PPE, biodiversità e paesaggio, conflitti collegati |
 | Confronto per indicatore | Tutte le categorie (emissioni, materiali, efficienza, suolo e acqua, fauna, salute), ognuna con la sua tendina per l'indicatore; un valore per fonte, ordinato, con etichette dirette |
 | Consumo di suolo | Dati ISPRA 2026 sul consumo di suolo in Italia per causa (FV a terra, eolico, edifici, cantieri…), uso di suolo per MWh lungo il ciclo di vita, dati FVG |
-| Le esternalità del fossile | Dove ricadono gli impatti, fattori di emissione e inquinanti del termoelettrico italiano (ISPRA), costi esterni per MWh, sussidi ambientalmente dannosi, infrastrutture fossili in FVG |
-| Shale gas e olio di scisto | Quota stimata di gas e greggio da fracking nelle importazioni italiane, calcolatore delle emissioni del gas in funzione delle perdite di metano, impatti locali (acqua, salute, sismicità), scisti bituminosi estoni |
+| Le esternalità del fossile | Tre schede. *Quadro generale*: dove ricadono gli impatti, fattori di emissione e inquinanti del termoelettrico italiano (ISPRA), costi esterni per MWh, sussidi ambientalmente dannosi, infrastrutture fossili in FVG. *Shale gas e olio di scisto*: quota stimata da fracking nelle importazioni italiane, calcolatore delle emissioni in funzione delle perdite di metano, impatti locali, scisti estoni. *Le compagnie*: casi documentati di danni ambientali e responsabilità (Shell, Eni, BP, ExxonMobil), con la solidità di ogni affermazione |
+| Investimenti e profitti | Investimenti mondiali per fonte (IEA 2026), costi delle rinnovabili (IRENA), extraprofitti del fossile, tassa italiana sugli extraprofitti, sussidi, finanza bancaria, contratti di lungo periodo |
 | Conflitti in FVG | I 21 casi di *Local opposition.xlsx*, motivo per motivo, con l'evidenza disponibile |
 | Fonti e metodo | Bibliografia, regole, cautele, lacune |
 
@@ -63,6 +63,8 @@ Tutti i dati sono file CSV in `data/`, modificabili anche con Excel o Google She
 | `costi_esterni.csv` | Costi esterni dell'elettricità per tecnologia (€/MWh) |
 | `termoelettrico_italia.csv` | Inquinanti per kWh del termoelettrico italiano, 2005 e 2024 (ISPRA) |
 | `importazioni_shale.csv` | Quota degli Stati Uniti nelle importazioni italiane e quota di shale nella produzione USA |
+| `casi_compagnie.csv` | Casi di danni ambientali e responsabilità delle compagnie, con stato dell'evidenza |
+| `investimenti.csv` | Investimenti mondiali per voce (IEA 2026) |
 | `temi_conflitto.csv` | Per ogni motivo di protesta: natura, evidenza, stato (misurato / plausibile / non supportato) |
 
 ### Regole

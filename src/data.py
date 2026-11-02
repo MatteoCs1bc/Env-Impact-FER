@@ -151,6 +151,16 @@ def carica_importazioni_shale() -> pd.DataFrame:
     return df
 
 
+def carica_investimenti() -> pd.DataFrame:
+    df = _csv("investimenti.csv")
+    df["miliardi_usd"] = pd.to_numeric(df["miliardi_usd"])
+    return df
+
+
+def carica_compagnie() -> pd.DataFrame:
+    return _csv("casi_compagnie.csv")
+
+
 def valida() -> list[str]:
     """Restituisce la lista dei problemi trovati nei dati (vuota se tutto è in ordine)."""
     problemi: list[str] = []
@@ -239,6 +249,10 @@ def valida() -> list[str]:
                      ("termoelettrico_italia", carica_termoelettrico())):
         for fid in set(df["fonte_id"]) - id_fonti:
             problemi.append(f"{nome}: fonte_id '{fid}' assente dalla bibliografia")
+    for fid in set(carica_investimenti()["fonte_id"]) - id_fonti:
+        problemi.append(f"investimenti: fonte_id '{fid}' assente dalla bibliografia")
+    for fid in set(carica_compagnie()["fonte_id"]) - id_fonti:
+        problemi.append(f"casi_compagnie: fonte_id '{fid}' assente dalla bibliografia")
     imp = carica_importazioni_shale()
     for fid in (set(imp["fonte_quota_usa"]) | set(imp["fonte_quota_shale"])) - id_fonti:
         problemi.append(f"importazioni_shale: fonte_id '{fid}' assente dalla bibliografia")

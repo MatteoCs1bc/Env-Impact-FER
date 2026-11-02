@@ -17,7 +17,7 @@ pagine = st.navigation(
         st.Page("pages/confronto.py", title="Confronto per indicatore", icon=":material/bar_chart:"),
         st.Page("pages/suolo.py", title="Consumo di suolo", icon=":material/landscape:"),
         st.Page("pages/fossili.py", title="Le esternalità del fossile", icon=":material/factory:"),
-        st.Page("pages/shale.py", title="Shale gas e olio di scisto", icon=":material/oil_barrel:"),
+        st.Page("pages/investimenti.py", title="Investimenti e profitti", icon=":material/payments:"),
         st.Page("pages/conflitti.py", title="Conflitti in FVG", icon=":material/location_on:"),
         st.Page("pages/fonti.py", title="Fonti e metodo", icon=":material/menu_book:"),
     ]

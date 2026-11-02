@@ -44,6 +44,54 @@ st.caption(
     "sommano esattamente al totale: per esempio, parte dei cantieri diventerà edifici, strade o logistica."
 )
 
+st.markdown("**Cemento e asfalto contro rinnovabili**")
+somme = suolo.groupby("macro")["ettari"].sum()
+cemento, cantieri, rinn, cave = (somme.get(k, 0) for k in ("Cemento e asfalto", "Cantieri", "Rinnovabili", "Cave e miniere"))
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    y=["Cemento e asfalto"], x=[cemento], orientation="h", name="Già costruito (edifici, piazzali, strade, logistica)",
+    marker=dict(color=t["secondario"]), hovertemplate="Già costruito: %{x:,.0f} ha<extra></extra>",
+))
+fig.add_trace(go.Bar(
+    y=["Cemento e asfalto"], x=[cantieri], orientation="h", name="Cantieri (in gran parte futuro cemento)",
+    marker=dict(color=t["altre"], pattern=dict(shape="/", fgcolor=t["secondario"])),
+    hovertemplate="Cantieri: %{x:,.0f} ha<extra></extra>",
+))
+fig.add_trace(go.Bar(
+    y=["Rinnovabili (FV a terra ed eolico)"], x=[rinn], orientation="h", name="Rinnovabili",
+    marker=dict(color=ui.colore_famiglia("Rinnovabili variabili")), hovertemplate="Rinnovabili: %{x:,.0f} ha<extra></extra>",
+))
+fig.add_trace(go.Bar(
+    y=["Cave e miniere"], x=[cave], orientation="h", name="Cave e miniere", marker=dict(color=t["altre"]),
+    hovertemplate="Cave e miniere: %{x:,.0f} ha<extra></extra>",
+))
+for y, x, testo in (
+    ("Cemento e asfalto", cemento + cantieri, f"{ui.fmt(cemento)} ha costruiti + {ui.fmt(cantieri)} ha di cantieri"),
+    ("Rinnovabili (FV a terra ed eolico)", rinn, f"{ui.fmt(rinn)} ha, consumo reversibile"),
+    ("Cave e miniere", cave, f"{ui.fmt(cave)} ha"),
+):
+    fig.add_annotation(x=x, y=y, text=testo, showarrow=False, xanchor="left", xshift=8, font=dict(color=t["testo"], size=12))
+ui.stile(fig, barmode="stack", height=260, margin=dict(l=12, r=14, t=14, b=44), font=dict(size=13))
+fig.update_layout(legend=dict(orientation="h", y=-0.35, x=0))
+fig.update_xaxes(title=dict(text="ettari di nuovo consumo nel 2025"), range=[0, (cemento + cantieri) * 1.45],
+                 tickformat=",.0f")
+fig.update_yaxes(showgrid=False, categoryorder="array",
+                 categoryarray=["Cave e miniere", "Rinnovabili (FV a terra ed eolico)", "Cemento e asfalto"])
+st.plotly_chart(fig, width="stretch", key="suolo_cemento")
+st.markdown(
+    f"Nel 2025, per ogni ettaro occupato da fotovoltaico a terra ed eolico, **{ui.fmt(cemento / rinn)} ettari** "
+    f"sono stati coperti da edifici, piazzali, strade e logistica, e **{ui.fmt((cemento + cantieri) / rinn)}** "
+    "contando i cantieri. La differenza non è solo di quantità: cemento e asfalto **impermeabilizzano** il suolo "
+    "in modo di fatto permanente, mentre sotto i moduli il suolo resta permeabile, può restare inerbito o coltivato "
+    f"e torna disponibile a fine vita dell'impianto. Le rinnovabili sono il **{ui.fmt(rinn / (cemento + cantieri + rinn + cave) * 100)}%** "
+    "di queste voci, ma sono la parte più discussa."
+)
+st.caption(
+    "Aggregazione nostra delle voci ISPRA mostrate sopra. Il confronto riguarda il flusso del 2025, non lo stock: "
+    "il suolo già impermeabilizzato in Italia è di 21.644 km². Il FV a terra può comunque ridurre la fertilità se il "
+    "cantiere compatta o rimuove lo strato superficiale: la reversibilità dipende da come l'impianto è costruito."
+)
+
 with st.container(border=True):
     st.markdown("**Cosa dicono questi numeri, senza sconti a nessuno**")
     st.markdown(

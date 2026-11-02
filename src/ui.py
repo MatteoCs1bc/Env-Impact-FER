@@ -58,7 +58,7 @@ def stile(fig: go.Figure, **layout) -> go.Figure:
     fig.update_layout(
         plot_bgcolor=t["pannello"], paper_bgcolor=t["pannello"],
         font=font, legend=dict(font=dict(color=t["testo"])),
-        hoverlabel=dict(align="left"), **layout,
+        hoverlabel=dict(align="left"), separators=",.", **layout,
     )
     return fig
 
@@ -78,6 +78,8 @@ def dati():
         "costi_esterni": D.carica_costi_esterni(),
         "termoelettrico": D.carica_termoelettrico(),
         "shale": D.carica_importazioni_shale(),
+        "compagnie": D.carica_compagnie(),
+        "investimenti": D.carica_investimenti(),
     }
 
 

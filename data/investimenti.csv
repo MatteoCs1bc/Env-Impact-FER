@@ -1,0 +1,10 @@
+voce,gruppo,miliardi_usd,famiglia,anno,fonte_id,note
+Solare,Rinnovabili e nucleare,365,Rinnovabili variabili,2026,IEA_WEI2026,
+Eolico,Rinnovabili e nucleare,200,Rinnovabili variabili,2026,IEA_WEI2026,
+Idroelettrico,Rinnovabili e nucleare,75,Programmabili a basse emissioni,2026,IEA_WEI2026,
+Nucleare,Rinnovabili e nucleare,80,Programmabili a basse emissioni,2026,IEA_WEI2026,«Oltre 80 miliardi»: valore minimo.
+Accumuli (batterie di rete),"Reti, accumuli ed efficienza",100,Sistema (accumuli e reti),2026,IEA_WEI2026,«Oltre 100 miliardi»: valore minimo.
+Efficienza energetica,"Reti, accumuli ed efficienza",350,Sistema (accumuli e reti),2026,IEA_WEI2026,Circa 350 miliardi all'anno.
+Petrolio (offerta),Fossili,500,Fossili,2026,IEA_WEI2026,«Meno di 500 miliardi»: valore massimo.
+Gas naturale (offerta),Fossili,330,Fossili,2026,IEA_WEI2026,
+Carbone (offerta),Fossili,180,Fossili,2026,IEA_WEI2026,
