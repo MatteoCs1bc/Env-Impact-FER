@@ -1,0 +1,6 @@
+tecnologia,famiglia,min,max,unita,anno,fonte_id,note
+"Fossili (carbone, lignite, gas, petrolio)",Fossili,68,177,€2018/MWh,2018,TRINOMICS2020,Il clima pesa per oltre il 65%; il resto è soprattutto particolato e altri inquinanti.
+Biomasse,Programmabili a basse emissioni,52,54,€2018/MWh,2018,TRINOMICS2020,Più basso del gas secondo lo studio; dominano gli inquinanti della combustione.
+Nucleare,Programmabili a basse emissioni,15,16,€2018/MWh,2018,TRINOMICS2020,
+"Fotovoltaico, solare a concentrazione, geotermico",Rinnovabili variabili,7,17,€2018/MWh,2018,TRINOMICS2020,Soprattutto dalla manifattura (energia e materiali).
+Eolico (onshore e offshore) e idroelettrico,Rinnovabili variabili,2,3,€2018/MWh,2018,TRINOMICS2020,Lo studio non distingue onshore e offshore.

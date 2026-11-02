@@ -37,16 +37,14 @@ for fam, col in D.FAMIGLIE.items():
         continue
     fig.add_trace(go.Bar(
         y=s["etichetta"], x=s["n"], orientation="h", name=fam,
-        marker=dict(color=col, line=dict(color="white", width=2)),
+        marker=dict(color=ui.colore_famiglia(fam), line=dict(color=ui.tema()["pannello"], width=2)),
         customdata=s["fonti"],
         hovertemplate=f"<b>{fam}</b> (%{{customdata}})<br>%{{y}}: %{{x}} casi<extra></extra>",
     ))
-fig.update_layout(
-    barmode="stack", height=480, margin=dict(l=10, r=10, t=10, b=30),
-    yaxis=dict(categoryorder="array", categoryarray=ordine_temi[::-1]),
-    xaxis=dict(title="Numero di conflitti in cui il motivo compare", gridcolor=ui.GRIGLIA, dtick=1),
-    legend=dict(orientation="h", y=-0.15), plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", font=dict(size=13),
-)
+ui.stile(fig, barmode="stack", height=500, margin=dict(l=12, r=14, t=14, b=30), font=dict(size=13))
+fig.update_layout(legend=dict(orientation="h", y=-0.17))
+fig.update_yaxes(categoryorder="array", categoryarray=ordine_temi[::-1], showgrid=False)
+fig.update_xaxes(title=dict(text="Numero di conflitti in cui il motivo compare"), dtick=1)
 st.plotly_chart(fig, width="stretch")
 st.caption("Colori per famiglia di fonte; passa sopra una barra per vedere le fonti. Un conflitto può avere più motivi.")
 

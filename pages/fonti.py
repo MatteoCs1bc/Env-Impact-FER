@@ -49,8 +49,10 @@ st.markdown(
 2. LCA eolico offshore galleggiante.
 3. EROI e energy payback time con metodo dichiarato.
 4. Uso di suolo in m²·anno/MWh dal corrigendum UNECE 2022, per avere tutte le fonti con lo stesso metodo.
-5. Mortalità e costi esterni monetizzati (EEA, ExternE).
-6. Evidenza specifica per il FVG: campi elettromagnetici (ARPA FVG), odori del biometano, consumo di suolo dei parchi FV.
+5. Costi esterni per singola fonte e per l'Italia (i valori Trinomics 2020 raggruppano i fossili; servono EEA ed ExternE con dettaglio per tecnologia).
+6. Evidenza specifica per il FVG: campi elettromagnetici (ARPA FVG), odori del biometano, consumo di suolo per causa (capitolo FV del rapporto ISPRA 2026, non leggibile dal Drive per dimensione).
+7. Impatti ecologici di sversamenti, piattaforme e oleodotti; impatti locali di SIOT-TAL e delle centrali termoelettriche del FVG (AIA, monitoraggi ARPA).
+8. Conflitti e proteste contro infrastrutture fossili in FVG, da affiancare a Local opposition.xlsx.
 """
 )
 

@@ -14,6 +14,54 @@ TESTO_SECONDARIO = "#52514e"
 GRIGLIA = "rgba(120,120,120,0.18)"
 GRIGIO_ALTRE = "#c9c8c2"
 
+# Colori dei grafici per tema. Il pannello del grafico ha uno sfondo diverso da quello
+# dell'app, così il grafico si stacca dalla pagina sia in chiaro sia in scuro.
+TEMI = {
+    "light": dict(pannello="#f3f2ee", testo="#0b0b0b", secondario="#52514e", assi="#6b6a66",
+                  griglia="rgba(0,0,0,0.10)", altre="#c4c3bd", vuoto="#ffffff"),
+    "dark": dict(pannello="#262730", testo="#f2f2f0", secondario="#b4b3ae", assi="#a3a29d",
+                 griglia="rgba(255,255,255,0.14)", altre="#6b6c75", vuoto="#262730"),
+}
+# Colori delle famiglie nel tema scuro (palette validata, varianti per sfondo scuro).
+FAMIGLIE_SCURO = {
+    "Fossili": "#f07a4a",
+    "Programmabili a basse emissioni": "#4a95ec",
+    "Rinnovabili variabili": "#22b884",
+    "Sistema (accumuli e reti)": "#9085e9",
+}
+
+
+def tema() -> dict:
+    """Colori dei grafici per il tema attivo (chiaro se non rilevabile)."""
+    try:
+        tipo = st.context.theme.type or "light"
+    except Exception:
+        tipo = "light"
+    t = dict(TEMI.get(tipo, TEMI["light"]))
+    t["tipo"] = tipo
+    return t
+
+
+def colore_famiglia(famiglia: str) -> str:
+    return (FAMIGLIE_SCURO if tema()["tipo"] == "dark" else D.FAMIGLIE)[famiglia]
+
+
+def stile(fig: go.Figure, **layout) -> go.Figure:
+    """Sfondo del pannello, assi visibili e testi leggibili nel tema attivo."""
+    t = tema()
+    asse = dict(showline=True, linecolor=t["assi"], linewidth=1.5, mirror=False, ticks="outside",
+                tickcolor=t["assi"], ticklen=5, tickfont=dict(color=t["testo"]),
+                title_font=dict(color=t["testo"]), gridcolor=t["griglia"], zeroline=False)
+    fig.update_xaxes(**asse)
+    fig.update_yaxes(**asse)
+    font = {"color": t["testo"], **layout.pop("font", {})}
+    fig.update_layout(
+        plot_bgcolor=t["pannello"], paper_bgcolor=t["pannello"],
+        font=font, legend=dict(font=dict(color=t["testo"])),
+        hoverlabel=dict(align="left"), **layout,
+    )
+    return fig
+
 
 @st.cache_data
 def dati():
@@ -26,6 +74,9 @@ def dati():
         "conflitti": D.carica_conflitti(),
         "temi": D.carica_temi(),
         "sintesi": D.carica_sintesi(),
+        "suolo": D.carica_consumo_suolo(),
+        "costi_esterni": D.carica_costi_esterni(),
+        "termoelettrico": D.carica_termoelettrico(),
     }
 
 
@@ -60,11 +111,12 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
     cit = bib.set_index("fonte_id")["citazione_breve"]
     valori = pd.concat([rif["lo"], rif["hi"]]).dropna()
     usa_log = log and len(valori) > 0 and (valori > 0).all()
+    t = tema()
     fig = go.Figure()
     etichette = []
     for _, r in rif.iterrows():
         attiva = evidenzia is None or r["fonte"] == evidenzia
-        col = colore_fonte(r["fonte"], profili) if attiva else GRIGIO_ALTRE
+        col = colore_fonte(r["fonte"], profili) if attiva else t["altre"]
         nome = f"<b>{r['fonte']}</b>" if (evidenzia is None or r["fonte"] == evidenzia) else r["fonte"]
         tec = r["tecnologia"] if len(r["tecnologia"]) <= 34 else r["tecnologia"][:32] + "…"
         y = nome if compatto else f"{nome}<br><span style='font-size:11px'>{tec}</span>"
@@ -85,7 +137,7 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
         if x_punto is not None and not pd.isna(x_punto):
             fig.add_trace(go.Scatter(
                 x=[x_punto], y=[y], mode="markers",
-                marker=dict(size=13, color=col if not intervallo else "white", line=dict(width=3, color=col)),
+                marker=dict(size=13, color=col if not intervallo else t["vuoto"], line=dict(width=3, color=col)),
                 hovertemplate=hover, showlegend=False,
             ))
         # Etichetta diretta del valore, a destra dell'estremo superiore, staccata dal segno.
@@ -95,7 +147,7 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
             x_testo = math.log10(r["hi"]) if usa_log else r["hi"]
             fig.add_annotation(
                 x=x_testo, y=y, text=testo, showarrow=False, xanchor="left", xshift=18,
-                font=dict(size=12, color="#0b0b0b" if attiva else TESTO_SECONDARIO),
+                font=dict(size=12, color=t["testo"] if attiva else t["secondario"]),
             )
 
     massimo = valori.max() if len(valori) else 1
@@ -104,16 +156,11 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
     else:
         rng = [0, massimo * 1.28 if massimo > 0 else 1]
     riga = 30 if compatto else 46
-    fig.update_layout(
-        height=max(150, riga * len(rif) + 70),
-        margin=dict(l=10, r=10, t=8, b=36),
-        xaxis=dict(title=dict(text=unita, font=dict(size=12)), type="log" if usa_log else "linear",
-                   range=rng, gridcolor=GRIGLIA, zeroline=False),
-        yaxis=dict(categoryorder="array", categoryarray=etichette, automargin=True, gridcolor="rgba(0,0,0,0)",
-                   tickfont=dict(color="#0b0b0b")),
-        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        hoverlabel=dict(align="left"), font=dict(size=13 if not compatto else 12),
-    )
+    stile(fig, height=max(170, riga * len(rif) + 80), margin=dict(l=12, r=14, t=14, b=44),
+          font=dict(size=13 if not compatto else 12, color=t["testo"]))
+    fig.update_xaxes(title=dict(text=unita, font=dict(size=12)), type="log" if usa_log else "linear", range=rng,
+                     dtick=1 if usa_log else None)
+    fig.update_yaxes(categoryorder="array", categoryarray=etichette, automargin=True, showgrid=False)
     return fig
 
 
@@ -126,7 +173,7 @@ def serve_log(df: pd.DataFrame) -> bool:
 
 def colore_fonte(fonte: str, profili: pd.DataFrame) -> str:
     fam = profili.set_index("fonte").loc[fonte, "famiglia"]
-    return D.FAMIGLIE[fam]
+    return colore_famiglia(fam)
 
 
 def fmt(v) -> str:
@@ -164,7 +211,7 @@ def legenda_famiglie():
         f"<span style='display:inline-flex;align-items:center;gap:6px;margin-right:18px'>"
         f"<span style='width:12px;height:12px;border-radius:3px;background:{c};display:inline-block'></span>"
         f"<span>{f}</span></span>"
-        for f, c in D.FAMIGLIE.items()
+        for f, c in ((f, colore_famiglia(f)) for f in D.FAMIGLIE)
     ]
     st.markdown("<div style='font-size:0.9rem'>" + "".join(pezzi) + "</div>", unsafe_allow_html=True)
 
@@ -195,27 +242,21 @@ def grafico_intervalli(df: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFram
         if not pd.isna(r["punto"]):
             fig.add_trace(go.Scatter(
                 x=[r["punto"]], y=[etichetta], mode="markers",
-                marker=dict(size=12, color=col, line=dict(width=2, color="white")),
+                marker=dict(size=12, color=col, line=dict(width=2, color=tema()["pannello"])),
                 hovertemplate=hover, showlegend=False,
             ))
         elif not intervallo:
             fig.add_trace(go.Scatter(
                 x=[r["lo"]], y=[etichetta], mode="markers",
-                marker=dict(size=12, color=col, line=dict(width=2, color="white")),
+                marker=dict(size=12, color=col, line=dict(width=2, color=tema()["pannello"])),
                 hovertemplate=hover, showlegend=False,
             ))
 
     positivi = pd.concat([df["lo"], df["hi"]]).dropna()
     usa_log = log and (positivi > 0).all()
-    fig.update_layout(
-        height=max(260, 42 * len(df) + 90),
-        margin=dict(l=10, r=20, t=10, b=40),
-        xaxis=dict(title=unita, type="log" if usa_log else "linear", gridcolor=GRIGLIA, zeroline=False),
-        yaxis=dict(gridcolor="rgba(0,0,0,0)", automargin=True),
-        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
-        hoverlabel=dict(align="left"),
-        font=dict(size=13),
-    )
+    stile(fig, height=max(260, 42 * len(df) + 90), margin=dict(l=12, r=20, t=14, b=44), font=dict(size=13))
+    fig.update_xaxes(title=dict(text=unita), type="log" if usa_log else "linear", dtick=1 if usa_log else None)
+    fig.update_yaxes(automargin=True, showgrid=False)
     return fig
 
 

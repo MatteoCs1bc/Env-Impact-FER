@@ -1,0 +1,9 @@
+causa,ettari,gruppo,anno,fonte_id,note
+Cantieri e aree in trasformazione,5387,Altre cause,2025,ISPRA_SUOLO2026,"In parte diventeranno edifici, strade o logistica negli anni successivi."
+Fotovoltaico a terra,2798,Energia,2025,ISPRA_SUOLO2026,Esclusi agrivoltaico e impianti a basso impatto. Quasi 40 volte il valore del 2021. ISPRA lo classifica come consumo reversibile.
+"Piazzali, parcheggi e altre superfici",1230,Altre cause,2025,ISPRA_SUOLO2026,
+Edifici,1160,Altre cause,2025,ISPRA_SUOLO2026,
+Infrastrutture,506,Altre cause,2025,ISPRA_SUOLO2026,
+Attività estrattive (cave e miniere),392,Altre cause,2025,ISPRA_SUOLO2026,"Soprattutto cave di inerti, non legate alla produzione di energia."
+Logistica,390,Altre cause,2025,ISPRA_SUOLO2026,
+Eolico (con le infrastrutture),118,Energia,2025,ISPRA_SUOLO2026,

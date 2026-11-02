@@ -124,6 +124,26 @@ def carica_temi() -> pd.DataFrame:
     return _csv("temi_conflitto.csv")
 
 
+def carica_consumo_suolo() -> pd.DataFrame:
+    df = _csv("consumo_suolo_cause.csv")
+    df["ettari"] = pd.to_numeric(df["ettari"])
+    return df
+
+
+def carica_costi_esterni() -> pd.DataFrame:
+    df = _csv("costi_esterni.csv")
+    for col in ("min", "max"):
+        df[col] = pd.to_numeric(df[col])
+    return df
+
+
+def carica_termoelettrico() -> pd.DataFrame:
+    df = _csv("termoelettrico_italia.csv")
+    for col in ("v2005", "v2024", "emissioni_2024_kt"):
+        df[col] = pd.to_numeric(df[col])
+    return df
+
+
 def valida() -> list[str]:
     """Restituisce la lista dei problemi trovati nei dati (vuota se tutto è in ordine)."""
     problemi: list[str] = []
@@ -207,5 +227,15 @@ def valida() -> list[str]:
         for t in r["lista_temi"]:
             if t not in temi_noti:
                 problemi.append(f"conflitti {r['id']}: tema '{t}' non definito in temi_conflitto")
+
+    for nome, df in (("consumo_suolo_cause", carica_consumo_suolo()), ("costi_esterni", carica_costi_esterni()),
+                     ("termoelettrico_italia", carica_termoelettrico())):
+        for fid in set(df["fonte_id"]) - id_fonti:
+            problemi.append(f"{nome}: fonte_id '{fid}' assente dalla bibliografia")
+    ce = carica_costi_esterni()
+    if (ce["min"] > ce["max"]).any():
+        problemi.append("costi_esterni: min maggiore di max")
+    if not set(ce["famiglia"]) <= set(FAMIGLIE):
+        problemi.append("costi_esterni: famiglia non prevista")
 
     return problemi

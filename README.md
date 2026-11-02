@@ -10,6 +10,8 @@ Fa parte del progetto **ESTERNALITÀ**, filone Social Acceptance / POWERUP.
 |---|---|
 | Analisi per fonte | Una scheda per fonte: per ogni categoria una spiegazione e i grafici con la fonte evidenziata tra le altre; dove ricadono gli impatti, aree PPE, biodiversità e paesaggio, conflitti collegati |
 | Confronto per indicatore | Tutte le categorie (emissioni, materiali, efficienza, suolo e acqua, fauna, salute), ognuna con la sua tendina per l'indicatore; un valore per fonte, ordinato, con etichette dirette |
+| Consumo di suolo | Dati ISPRA 2026 sul consumo di suolo in Italia per causa (FV a terra, eolico, edifici, cantieri…), uso di suolo per MWh lungo il ciclo di vita, dati FVG |
+| Le esternalità del fossile | Dove ricadono gli impatti, fattori di emissione e inquinanti del termoelettrico italiano (ISPRA), costi esterni per MWh, sussidi ambientalmente dannosi, infrastrutture fossili in FVG |
 | Conflitti in FVG | I 21 casi di *Local opposition.xlsx*, motivo per motivo, con l'evidenza disponibile |
 | Fonti e metodo | Bibliografia, regole, cautele, lacune |
 
@@ -56,6 +58,9 @@ Tutti i dati sono file CSV in `data/`, modificabili anche con Excel o Google She
 | `matrice_qualitativa.csv` | Descrizione degli impatti non misurati negli LCA (biodiversità, paesaggio, odori…), mostrata nell'Analisi per fonte |
 | `profilo_fonti.csv` | Famiglia, dove ricadono gli impatti, chi li subisce, aree PPE |
 | `conflitti_fvg.csv` | I 21 conflitti in FVG, con i motivi codificati |
+| `consumo_suolo_cause.csv` | Nuovo consumo di suolo in Italia per causa (ISPRA 2026, dati 2025) |
+| `costi_esterni.csv` | Costi esterni dell'elettricità per tecnologia (€/MWh) |
+| `termoelettrico_italia.csv` | Inquinanti per kWh del termoelettrico italiano, 2005 e 2024 (ISPRA) |
 | `temi_conflitto.csv` | Per ogni motivo di protesta: natura, evidenza, stato (misurato / plausibile / non supportato) |
 
 ### Regole
