@@ -144,7 +144,8 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
                 hovertemplate=hover, showlegend=False,
             ))
         # Etichetta diretta del valore, a destra dell'estremo superiore, staccata dal segno.
-        testo = (f"{fmt(r['min'])}–{fmt(r['max'])}" if intervallo else fmt(x_punto))
+        testo = (f"{fmt(r['min'])} / {fmt(r['max'])}" if intervallo and r["min"] < 0
+                 else f"{fmt(r['min'])}–{fmt(r['max'])}" if intervallo else fmt(x_punto))
         if not pd.isna(r["hi"]):
             # Sugli assi logaritmici plotly vuole la coordinata delle annotazioni in log10.
             x_testo = math.log10(r["hi"]) if usa_log else r["hi"]
@@ -157,7 +158,9 @@ def grafico_riferimento(rif: pd.DataFrame, profili: pd.DataFrame, bib: pd.DataFr
     if usa_log:
         rng = [math.log10(valori.min()) - 0.3, math.log10(massimo) + 0.9]
     else:
-        rng = [0, massimo * 1.28 if massimo > 0 else 1]
+        minimo = valori.min() if len(valori) else 0
+        basso = min(0, minimo * 1.15)
+        rng = [basso, massimo + 0.35 * (massimo - basso) if massimo > 0 else 1]
     riga = 30 if compatto else 46
     stile(fig, height=max(170, riga * len(rif) + 80), margin=dict(l=12, r=14, t=14, b=44),
           font=dict(size=13 if not compatto else 12, color=t["testo"]))

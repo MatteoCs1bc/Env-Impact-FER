@@ -4,7 +4,7 @@ Carbone,Materiali ed estrazione,"Per ogni TWh si estraggono circa 1,2 milioni di
 Carbone,Efficienza,"Il rendimento va dal 37% (polverizzato) al 42% (IGCC). Con la cattura della CO2 scende di circa 10 punti: servono più carbone, più acqua e più sostanze chimiche, e gli altri impatti crescono."
 Carbone,Suolo e acqua,"Uso di suolo mediano di 10 m²·anno/MWh, per più di metà nelle miniere (Lovering 2022). Il consumo d'acqua per il raffreddamento è alto: 5 L/kWh in una centrale con cattura della CO2."
 Carbone,Salute e sicurezza,"Prima fonte per mortalità: circa 25 morti per TWh, soprattutto per inquinamento atmosferico. Ha anche la tossicità più alta, per l'arsenico che esce da sterili di miniera e ceneri."
-Carbone,"Fauna, flora, biodiversità","Nessun dato quantitativo nella base. Gli impatti passano da miniere a cielo aperto, piogge acide, eutrofizzazione e clima."
+Carbone,"Fauna, flora, biodiversità","Secondo una stima preliminare di Sovacool (2009) le centrali fossili statunitensi uccidono circa 5,2 uccelli per GWh, contro 0,27 dell'eolico e 0,42 del nucleare. Quasi tutto il valore fossile (4,98) viene però da una proiezione delle estinzioni dovute al clima, molto incerta; senza il clima restano 0,2 uccelli/GWh tra miniere, piogge acide e mercurio, un valore simile a quello dell'eolico. Gli altri impatti passano da miniere a cielo aperto, piogge acide, eutrofizzazione e clima."
 Petrolio,Emissioni,"Una sola fonte nella base (Turconi 2013, rassegna di studi eterogenei): 530–900 gCO2eq/kWh e 0,85–8 g di SO2 per kWh, molto più del gas. Manca un LCA armonizzato dal greggio all'elettricità. Nel parco italiano la sola combustione dei prodotti petroliferi emette 477 gCO2/kWh (ISPRA, 2024), senza contare estrazione e raffinazione."
 Petrolio,Salute e sicurezza,"Circa 18 morti per TWh, seconda solo al carbone."
 Petrolio,"Fauna, flora, biodiversità","Nessun dato quantitativo nella base. Gli impatti principali sono sversamenti in mare e a terra, piattaforme, oleodotti e clima."
@@ -31,12 +31,22 @@ Fotovoltaico,Materiali ed estrazione,"Tra le fonti di generazione è la più int
 Fotovoltaico,Efficienza,"Capacity factor del 12% in Europa secondo UNECE; il Breakthrough Institute assume 24%, e per questo i suoi valori per MWh sono più bassi. Vita utile di 30 anni."
 Fotovoltaico,Suolo e acqua,"Gli impianti a terra hanno una mediana di 20 m²·anno/MWh, il valore più alto tra le fonti che occupano il suolo in modo esclusivo, biomasse escluse. L'occupazione è reversibile e si riduce con agrivoltaico e aree idonee; su tetto è quasi zero. L'acqua consumata (0,6 L/kWh) serve soprattutto a fabbricare le celle."
 Fotovoltaico,Salute e sicurezza,"0,019 morti per TWh. La tossicità deriva soprattutto dal rame degli inverter."
-Fotovoltaico,"Fauna, flora, biodiversità","Nessun dato quantitativo nella base. L'effetto dipende da cosa c'era prima: su seminativi intensivi, con una gestione come soluzione basata sulla natura, la vegetazione può migliorare; su habitat naturali è una perdita."
+Fotovoltaico,"Fauna, flora, biodiversità","L'effetto dipende soprattutto da cosa c'era prima e da come l'impianto è gestito.
+
+- **Fauna:** la mortalità di uccelli misurata in un grande impianto FV californiano è di 0,5 uccelli/MW/anno per cause accertate (10,7 contando le carcasse di causa ignota), contro 6,7–11 per l'eolico (Walston 2016); l'«effetto lago», per cui gli uccelli acquatici scambierebbero i pannelli per acqua, è un'ipotesi non ancora verificata. Le recinzioni possono interrompere i corridoi per la fauna se non lasciano varchi.
+
+- **Flora:** sotto i pannelli c'è meno luce e più umidità, e la vegetazione cambia; secondo Vervloesem et al. (2022) un campo di frumento intensivo ha un impatto complessivo sul suolo e sulla biodiversità più alto di un parco solare. Nel Regno Unito, in 37 parchi monitorati, sono state trovate in media 32 specie vegetali e 25 specie di uccelli per sito (Solar Energy UK 2023, rapporto di settore senza aree di controllo). Con prati fioriti e collegamenti con gli habitat vicini i parchi possono sostenere molti impollinatori (Blaydes 2021).
+
+- **Agrivoltaico:** l'ombra riduce l'evapotraspirazione (−29% in un impianto mediterraneo) e la resa varia da −58% a +47% secondo coltura e clima: conviene nei climi caldi e secchi e con colture che tollerano l'ombra.
+
+- **Buone pratiche italiane (CNR, LIFE NatConnect):** moduli alti, file distanziate, poco cemento, specie autoctone, niente diserbanti, recinzioni permeabili alla fauna e monitoraggio prima e dopo, come a Montalto di Castro e Bastardo (Umbria).
+
+- **Il rischio vero** è installare su habitat naturali o semi-naturali, o costruire compattando e asportando il suolo fertile: lì è una perdita."
 Eolico onshore,Emissioni,"7,8–16 gCO2eq/kWh. Torre e fondazioni pesano per il 50–70% delle emissioni."
 Eolico onshore,Materiali ed estrazione,"È la fonte che usa più calcestruzzo per TWh (5.144 t, per le fondazioni) e tra quelle che usano più acciaio. Tra le fonti con dati confrontabili è quella che muove più roccia (circa 59.000 t/TWh). Le terre rare servono solo nei generatori a magneti permanenti (0,56 t/TWh)."
 Eolico onshore,Efficienza,Capacity factor del 23% in Europa secondo UNECE (35% nel modello BTI) e vita utile di 20 anni.
 Eolico onshore,Suolo e acqua,"Impronta diretta molto piccola (1,3 m²·anno/MWh); considerando l'intera area del parco si arriva a 120, ma il suolo tra le turbine resta in gran parte utilizzabile, per esempio per l'agricoltura."
-Eolico onshore,"Fauna, flora, biodiversità","Mortalità molto variabile per sito: 0–9 uccelli e 0–43 pipistrelli per turbina all'anno. Pesano rotte migratorie, rapaci e chirotteri. Le misure efficaci sono escludere le aree sensibili, fermare le turbine nei periodi critici e usare radar di rilevamento."
+Eolico onshore,"Fauna, flora, biodiversità","Mortalità molto variabile per sito: 0–9 uccelli e 0–43 pipistrelli per turbina all'anno. Pesano rotte migratorie, rapaci e chirotteri. Le misure efficaci sono escludere le aree sensibili, fermare le turbine nei periodi critici e usare radar di rilevamento. Per MW: 6,7–11 uccelli all'anno negli USA, contro 0,5–10,7 di un grande impianto fotovoltaico (Walston 2016). Per GWh: 0,27 uccelli contro circa 5 dei fossili, ma il valore fossile dipende quasi tutto da proiezioni climatiche (Sovacool 2009)."
 Eolico onshore,Salute e sicurezza,"0,035 morti per TWh, soprattutto incidenti in costruzione e manutenzione."
 Eolico offshore fisso,Emissioni,12–23 gCO2eq/kWh; le navi per costruzione e manutenzione pesano circa il 20%.
 Eolico offshore fisso,Materiali ed estrazione,"È la fonte che usa più acciaio per TWh (1.792 t). Servono rame per i cavi e terre rare nei generatori (1,09 t/TWh); roccia movimentata circa 35.000 t/TWh."
