@@ -53,6 +53,8 @@ st.markdown(
 6. Evidenza specifica per il FVG: campi elettromagnetici (ARPA FVG), odori del biometano, consumo di suolo per causa (capitolo FV del rapporto ISPRA 2026, non leggibile dal Drive per dimensione).
 7. Impatti ecologici di sversamenti, piattaforme e oleodotti; impatti locali di SIOT-TAL e delle centrali termoelettriche del FVG (AIA, monitoraggi ARPA).
 8. Conflitti e proteste contro infrastrutture fossili in FVG, da affiancare a Local opposition.xlsx.
+9. Importazioni italiane di gas e greggio per tipo di giacimento da fonti primarie (ARERA, MASE, UNEM), per verificare le stime sulla quota di shale.
+10. Uso di terre rare per TWh dei fossili (catalizzatori di raffinazione) e del nucleare.
 """
 )
 

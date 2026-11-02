@@ -144,6 +144,13 @@ def carica_termoelettrico() -> pd.DataFrame:
     return df
 
 
+def carica_importazioni_shale() -> pd.DataFrame:
+    df = _csv("importazioni_shale.csv")
+    for col in ("quota_usa_min", "quota_usa_max", "quota_shale_usa", "quota_shale_usa_max"):
+        df[col] = pd.to_numeric(df[col])
+    return df
+
+
 def valida() -> list[str]:
     """Restituisce la lista dei problemi trovati nei dati (vuota se tutto è in ordine)."""
     problemi: list[str] = []
@@ -232,6 +239,9 @@ def valida() -> list[str]:
                      ("termoelettrico_italia", carica_termoelettrico())):
         for fid in set(df["fonte_id"]) - id_fonti:
             problemi.append(f"{nome}: fonte_id '{fid}' assente dalla bibliografia")
+    imp = carica_importazioni_shale()
+    for fid in (set(imp["fonte_quota_usa"]) | set(imp["fonte_quota_shale"])) - id_fonti:
+        problemi.append(f"importazioni_shale: fonte_id '{fid}' assente dalla bibliografia")
     ce = carica_costi_esterni()
     if (ce["min"] > ce["max"]).any():
         problemi.append("costi_esterni: min maggiore di max")

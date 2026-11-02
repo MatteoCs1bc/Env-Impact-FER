@@ -1,0 +1,3 @@
+combustibile,anno,quota_usa_min,quota_usa_max,quota_shale_usa,quota_shale_usa_max,fonte_quota_usa,fonte_quota_shale,note
+Gas naturale,2025,14,15.9,79,79,ARERA2026_IMPORT,EIA_SHALEGAS2024,"USA 9,8 su 61,6 mld m³ (ARERA) = 15,9%; dai carichi Snam (44% del GNL, GNL circa 32% dei flussi) circa 14%."
+Petrolio greggio,2025,8,9,64,100,UNEM_GREGGIO2025,EIA_TIGHT2024,"USA 9% nel 2025 (stima) e 8% a gennaio 2026. Il greggio USA esportato è soprattutto leggero, in gran parte tight oil: il limite alto assume che lo sia tutto."

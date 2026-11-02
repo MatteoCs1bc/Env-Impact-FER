@@ -77,6 +77,7 @@ def dati():
         "suolo": D.carica_consumo_suolo(),
         "costi_esterni": D.carica_costi_esterni(),
         "termoelettrico": D.carica_termoelettrico(),
+        "shale": D.carica_importazioni_shale(),
     }
 
 

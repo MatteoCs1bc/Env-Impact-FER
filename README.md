@@ -12,6 +12,7 @@ Fa parte del progetto **ESTERNALITÀ**, filone Social Acceptance / POWERUP.
 | Confronto per indicatore | Tutte le categorie (emissioni, materiali, efficienza, suolo e acqua, fauna, salute), ognuna con la sua tendina per l'indicatore; un valore per fonte, ordinato, con etichette dirette |
 | Consumo di suolo | Dati ISPRA 2026 sul consumo di suolo in Italia per causa (FV a terra, eolico, edifici, cantieri…), uso di suolo per MWh lungo il ciclo di vita, dati FVG |
 | Le esternalità del fossile | Dove ricadono gli impatti, fattori di emissione e inquinanti del termoelettrico italiano (ISPRA), costi esterni per MWh, sussidi ambientalmente dannosi, infrastrutture fossili in FVG |
+| Shale gas e olio di scisto | Quota stimata di gas e greggio da fracking nelle importazioni italiane, calcolatore delle emissioni del gas in funzione delle perdite di metano, impatti locali (acqua, salute, sismicità), scisti bituminosi estoni |
 | Conflitti in FVG | I 21 casi di *Local opposition.xlsx*, motivo per motivo, con l'evidenza disponibile |
 | Fonti e metodo | Bibliografia, regole, cautele, lacune |
 
@@ -61,6 +62,7 @@ Tutti i dati sono file CSV in `data/`, modificabili anche con Excel o Google She
 | `consumo_suolo_cause.csv` | Nuovo consumo di suolo in Italia per causa (ISPRA 2026, dati 2025) |
 | `costi_esterni.csv` | Costi esterni dell'elettricità per tecnologia (€/MWh) |
 | `termoelettrico_italia.csv` | Inquinanti per kWh del termoelettrico italiano, 2005 e 2024 (ISPRA) |
+| `importazioni_shale.csv` | Quota degli Stati Uniti nelle importazioni italiane e quota di shale nella produzione USA |
 | `temi_conflitto.csv` | Per ogni motivo di protesta: natura, evidenza, stato (misurato / plausibile / non supportato) |
 
 ### Regole
